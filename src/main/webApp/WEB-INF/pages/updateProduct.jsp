@@ -4,7 +4,10 @@
 </head>
 <h1 align="center">Update product</h1>
 <br>
-<center><a href="/mainApp/adminHome"><button style="width: 110px;">Home</button></a></center><br><br>
+<center><a href="/mainApp/adminHome">
+    <button style="width: 110px;">Home</button>
+</a></center>
+<br><br>
 <form method="post">
     <table align="center" style="border-spacing: 15px">
         <tr>

@@ -6,9 +6,13 @@
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
-    <body>
+<body>
+<div align="center" style="border: solid 4px black;height: 95%">
     <h1 align="center">User List</h1><br><br><br>
-    <center><a href="/mainApp/adminHome"><button style="width: 110px;">Home</button></a></center><br><br>
+    <center><a href="/mainApp/adminHome">
+        <button style="width: 110px;">Home</button>
+    </a></center>
+    <br><br>
 
     <div class="container">
         <div class="container">
@@ -49,5 +53,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </body>
+</div>
+</body>
 </html>

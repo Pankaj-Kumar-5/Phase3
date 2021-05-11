@@ -25,11 +25,18 @@ public class Services {
 
 
     public boolean register(String email, String password, String name, String address, String phone) {
-        if (name.equals("") || email.equals("") || password.equals("") || address.equals("") || phone.equals(""))
+
+        if (myRepo.findByEmail(email) != null || myRepo.findByPhone(phone) != null) {
             return false;
+        }
+
+        if (name.equals("") || email.equals("") || password.equals("") || address.equals("") || phone.equals("")) {
+            return false;
+        }
 
         User user = new User(email, password, name, address, phone);
         myRepo.save(user);
+
         return true;
     }
 
@@ -110,8 +117,7 @@ public class Services {
     }
 
     public boolean changePassword(String email, String currentPass, String newPass, String reNewPass) {
-        System.out.println("new " + newPass);
-        System.out.println("renew " + reNewPass);
+
         try {
             if (newPass.equals(reNewPass)) {
                 User user = myRepo.findByEmail(email);

@@ -24,11 +24,13 @@ public class mainApp {
 
     @PostMapping("/register")
     public String register(@RequestParam("email") String email, @RequestParam("password") String password,
-                           @RequestParam("name") String name, @RequestParam("address") String address, @RequestParam("phone") String phone) {
+                           @RequestParam("name") String name, @RequestParam("address") String address, @RequestParam("phone") String phone,
+                           ModelMap map) {
         if (services.register(email, password, name, address, phone)) {
             return "regSuccess";
         } else {
-            return "Please try again";
+            map.put("message","Email or phone already exists....");
+            return "register";
         }
     }
 
@@ -74,12 +76,10 @@ public class mainApp {
     public String updateProduct(@RequestParam int id, @RequestParam("name") String name, @RequestParam("brand") String brand,
                                 @RequestParam("madeIn") String madeIn, @RequestParam("price") String price, @RequestParam("date") String date) {
         if (services.updateProduct(id, name, brand, madeIn, price, date)) {
-            System.out.println("updated");
             return "redirect:/mainApp/adminHome";
         } else {
             return "redirect:/mainApp/adminHome";
         }
-
     }
 
     @PostMapping("/passwordChange")
@@ -93,6 +93,4 @@ public class mainApp {
 
         return "passwordChange";
     }
-
-
 }

@@ -16,7 +16,6 @@ public class Admin {
     private String address;
     private String phone;
 
-
     public Admin() {
     }
 

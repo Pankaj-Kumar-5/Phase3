@@ -16,7 +16,6 @@ public class FileController {
     @Autowired
     private Services services;
 
-
     @GetMapping("/home")
     public String home() {
         return "home";
@@ -29,9 +28,8 @@ public class FileController {
 
     @GetMapping("/signIn{logout}")
     public String login(@PathVariable("logout") String logout, ModelMap map) {
-        System.out.println("log"+logout);
-        if(logout.contains("logout"))
-            map.put("logout","Logged out successfully");
+        if (logout.contains("logout"))
+            map.put("logout", "Logged out successfully");
         return "signIn";
     }
 
@@ -47,31 +45,30 @@ public class FileController {
     }
 
     @GetMapping("/delete-product")
-    public String deleteProduct(@RequestParam int id,ModelMap map) {
+    public String deleteProduct(@RequestParam int id, ModelMap map) {
         if (services.deleteProduct(id)) {
-            map.put("message","deleted product with id "+id);
+            map.put("message", "deleted product with id " + id);
         } else {
-            map.put("message","product not deleted with id "+id);
+            map.put("message", "product not deleted with id " + id);
         }
         map.put("products", services.getAllProduct());
         return "redirect:/mainApp/adminHome";
     }
 
     @GetMapping("/update-product")
-    public String updateProduct(@RequestParam int id,ModelMap map){
-        map.put("product",services.getProductById(id));
+    public String updateProduct(@RequestParam int id, ModelMap map) {
+        map.put("product", services.getProductById(id));
         return "updateProduct";
     }
 
     @GetMapping("/userList")
-    public String userList(ModelMap map){
-        System.out.println(services.getAllUser());
-        map.put("users",services.getAllUser());
+    public String userList(ModelMap map) {
+        map.put("users", services.getAllUser());
         return "userList";
     }
 
     @GetMapping("/passwordChange")
-    public String changePassword(){
+    public String changePassword() {
         return "passwordChange";
     }
 
@@ -80,7 +77,4 @@ public class FileController {
         map.put("products", services.getAllProduct());
         return "userHome";
     }
-
-
-
 }
