@@ -7,10 +7,10 @@
 </head>
 <body>
 <h1 align="center">Welcome to Sporty Shoes</h1><br>
-<h3 align="center">Pankaj&nbsp[admin]</h3><br>
-<center><a href="/mainApp/home">
-    <button>Logout</button>
-</a></center>
+<h3 align="center">${name}[admin]</h3><br>
+<center><a href="/mainApp/passwordChange"><button>Change Password</button></a>
+    <a href="/mainApp/userList"><button style="width: 110px;">User List</button></a>
+    <a href="/mainApp/signIn?logout"><button style="width: 110px;">Logout</button></a></center>
 <br><br>
 
 

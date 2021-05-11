@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MyRepo extends CrudRepository<User,String> {
+public interface MyRepo extends CrudRepository<User,Integer> {
 
     public User findByEmail(String Email);
+    public List<User> findByEmailOrNameOrPhone(String email,String name,String phone);
 }

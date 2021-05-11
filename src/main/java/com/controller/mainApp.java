@@ -7,11 +7,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("name")
 @RequestMapping("/mainApp")
 public class mainApp {
-
+    private String currentUserEmail = "";
     @Autowired
     private Services services;
 
@@ -31,14 +33,19 @@ public class mainApp {
     }
 
     @PostMapping("/signIn")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap map) {
         if (services.loginVerify(email, password)) {
+            map.put("name", services.getNameOfUser(email));
+            currentUserEmail = email;
+            map.put("email", email);
             if (services.isAdmin(email, password)) {
-                return "redirect:/mainApp/adminHome";
+                return "adminHome";
             }
-            return "success";
+
+            return "redirect:/mainApp/userHome";
         }
-        return "redirect:/mainApp/signIn";
+        map.put("message", "INVALID LOGIN");
+        return "signIn";
     }
 
     @PostMapping("/addProduct")
@@ -57,6 +64,12 @@ public class mainApp {
         return "adminHome";
     }
 
+    @PostMapping("/userList")
+    public String searchUser(@RequestParam("search") String name, ModelMap map) {
+        map.put("users", services.searchUser(name));
+        return "userList";
+    }
+
     @PostMapping("/update-product")
     public String updateProduct(@RequestParam int id, @RequestParam("name") String name, @RequestParam("brand") String brand,
                                 @RequestParam("madeIn") String madeIn, @RequestParam("price") String price, @RequestParam("date") String date) {
@@ -69,10 +82,17 @@ public class mainApp {
 
     }
 
-//    @PostMapping("/delete-product")
-//    public String deleteProduct(){
-//
-//    }
+    @PostMapping("/passwordChange")
+    public String changePassword(@RequestParam("currentPassword") String currentPassword, @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("reNewPassword") String reNewPassword, ModelMap map) {
+        if (services.changePassword(currentUserEmail, currentPassword, newPassword, reNewPassword)) {
+            map.put("message", "Password changed successfully");
+        } else {
+            map.put("message", "Password not changed !!!!");
+        }
+
+        return "passwordChange";
+    }
 
 
 }

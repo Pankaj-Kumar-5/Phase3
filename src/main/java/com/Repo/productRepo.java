@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface productRepo extends CrudRepository<Product,Integer> {
-    public List<Product> findByProductNameOrBrand(String productName,String brand);
+    public List<Product> findByProductNameOrBrandOrPurchaseDate(String productName,String brand,String date);
     public Product findById(int id);
 }

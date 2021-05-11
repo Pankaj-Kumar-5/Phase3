@@ -8,23 +8,23 @@
     <table align="center" style="border-spacing: 15px">
         <tr>
             <td>Email:</td>
-            <td><input type="email" name="email"></td>
+            <td><input type="email" name="email" required></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password"></td>
+            <td><input type="password" name="password" required></td>
         </tr>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="name" required></td>
         </tr>
         <tr>
             <td>Address:</td>
-            <td><input type="text" name="address"></td>
+            <td><input type="text" name="address" required></td>
         </tr>
         <tr>
             <td>Phone:</td>
-            <td><input type="text" name="phone"></td>
+            <td><input type="number" name="phone" required></td>
         </tr>
         <tr>
             <%--        <td></td>--%>

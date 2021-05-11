@@ -5,8 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class User {
-
+public class Admin {
     @Id
     @GeneratedValue
     private int id;
@@ -17,10 +16,11 @@ public class User {
     private String address;
     private String phone;
 
-    public User() {
+
+    public Admin() {
     }
 
-    public User(String email, String password, String name, String address, String phone) {
+    public Admin(String email, String password, String name, String address, String phone) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -75,4 +75,5 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,8 +27,11 @@ public class FileController {
         return "register";
     }
 
-    @GetMapping("/signIn")
-    public String login() {
+    @GetMapping("/signIn{logout}")
+    public String login(@PathVariable("logout") String logout, ModelMap map) {
+        System.out.println("log"+logout);
+        if(logout.contains("logout"))
+            map.put("logout","Logged out successfully");
         return "signIn";
     }
 
@@ -58,4 +62,25 @@ public class FileController {
         map.put("product",services.getProductById(id));
         return "updateProduct";
     }
+
+    @GetMapping("/userList")
+    public String userList(ModelMap map){
+        System.out.println(services.getAllUser());
+        map.put("users",services.getAllUser());
+        return "userList";
+    }
+
+    @GetMapping("/passwordChange")
+    public String changePassword(){
+        return "passwordChange";
+    }
+
+    @GetMapping("/userHome")
+    public String userHome(ModelMap map) {
+        map.put("products", services.getAllProduct());
+        return "userHome";
+    }
+
+
+
 }
